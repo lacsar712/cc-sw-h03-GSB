@@ -11,11 +11,5 @@ export async function api(path, opts = {}) {
     data = { detail: t }
   }
   if (!r.ok) throw new Error(data.detail || data.message || r.statusText)
-  if (Array.isArray(data)) {
-    return data.map((row) => ({
-      ...row,
-      nominal_nm: row.nominal_nm === 0 ? '' : row.nominal_nm,
-    }))
-  }
   return data
 }
