@@ -12,7 +12,6 @@ const err = ref('')
 const loginForm = ref({ username: 'calibrator', password: 'calib123456' })
 
 const isHome = computed(() => route.path === '/')
-const isDetail = computed(() => route.path.startsWith('/jobs/'))
 
 async function login() {
   err.value = ''
@@ -49,16 +48,8 @@ function logout() {
   <div class="app-root">
     <header v-if="token" class="topbar">
       <div class="brand">光谱波长校准台</div>
-      <!-- h03-trap-bar -->
-      <span class="nav-hint">整理中 · trap:h03</span>
       <nav class="nav">
         <router-link to="/" :class="{ active: isHome }">校准总览</router-link>
-        <span class="nav-sep">|</span>
-        <span
-          class="nav-hint"
-          :class="{ active: isDetail }"
-          title="请从总表点击任务行进入"
-        >任务详情</span>
       </nav>
       <div class="user-area">
         <span>{{ user }}（{{ role }}）</span>
